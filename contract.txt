@@ -1,0 +1,135 @@
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+
+//CUSTOM NAME SERVICE(.uwu)
+
+//v=0.0.1 
+
+
+
+contract sns{
+
+    address[] add;
+    bytes32[] nick;
+    bool avail = true;
+
+
+ 
+        
+    
+
+
+    
+   
+
+            
+
+
+
+
+
+    
+
+
+    
+    
+
+function SelfregisterDom(string memory name) public{
+
+        
+        bytes memory whatBytes = bytes(".uwu");
+        bytes memory whereBytes = bytes(name);
+        bytes memory dot = bytes(".");
+        uint dot_count = 0;
+        uint j = 0;
+
+        for(uint i = whereBytes.length - 3;i< whereBytes.length;i++){
+        
+
+            if(whatBytes[j] != whereBytes[i]){
+                
+                revert("Domain names must end with .uwu ");
+            }
+            j++;
+
+        
+        }
+
+        for(uint i = 0;i<whereBytes.length;i++){
+            if(whereBytes[i] == dot[0]){
+                dot_count++;
+            }
+        }
+
+        if(dot_count != 1){
+            revert("Domain name using Multiple period(.)");
+        }
+
+        
+        
+        
+        bytes32 ha_name;
+        
+
+        ha_name = keccak256(abi.encodePacked(name));
+
+        if(add.length != 0){
+            for(uint i=0; i<add.length; i++){
+                if(ha_name == nick[i]){
+                    avail = false;
+
+                }
+
+            }
+
+        }
+
+        
+
+        if(avail){
+        add.push(msg.sender);
+        nick.push(ha_name);
+
+        }
+        else{
+            revert("Domain not available!");
+        }
+
+        
+
+
+
+
+        
+    
+
+
+
+    }
+
+    function resolve(string memory gnick) public view returns(address){
+        uint i;
+        bool found = false;
+        bytes32 has_name = keccak256(abi.encodePacked(gnick));
+        for(i=0; i<add.length; i++){
+            if(has_name == nick[i]){
+                found = true;
+                break;
+
+            }
+        }
+        if(found){
+            return add[i];
+        }
+
+        else{
+            revert("Name cannot be resolved! Reason : Does not exist");
+        }
+        
+
+
+    }
+
+}
+
