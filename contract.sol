@@ -14,31 +14,10 @@ address[] add ;
 bytes32[] nick;
 bool avail = true;
 address owner;
-address[] resolvers;
+
 uint price = 370000;
 
 
-
-
-    
-    
-
-function assign_resolver(address add) public pure returns(uint8){
-    uint8 sum = 0;
-    bytes memory ad = abi.encodePacked(add);
-    for(uint i = 0;i<ad.length;i++){
-        sum = sum + (uint8(ad[i])%12);
-            
-            
-    }
-
-        
-    if(sum < 12){return sum;}
-    else{return sum%12;}
-        
-
-
-}
 
 function SelfregisterDom(string memory name) public payable{
 
