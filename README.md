@@ -1,7 +1,5 @@
 # Basic_ENS
 
-Note:This contract was fully written by Me
-You can compare the bytecode of this contract
 
 This is a smart contract written in the Solidity programming language for a simple name service (SNS) system on the Ethereum blockchain. The contract allows users to register domain names with the ".uwu" top-level domain (TLD) and pay a set price (in gwei) to do so. It also allows users to resolve registered domain names to their corresponding Ethereum address and transfer ownership of those domain names to other Ethereum addresses.
 
